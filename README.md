@@ -62,7 +62,7 @@ WITH sales_per_mall AS (
         sales_per_mall
 ```
 
-![Results for 1](assets\1.png)
+![Results for 1](assets/1.png)
 
 This query uses a Common Table Expression (CTE) to calculate the total sales for each shopping mall by aggregating revenue (SUM(quantity * price)) while narrowing the scope for 2023, grouped by malls. In the main query, a window function (RANK()) ranks the malls based on their total sales in descending order, identifying the top performers.
  
@@ -79,7 +79,7 @@ This query uses a Common Table Expression (CTE) to calculate the total sales for
         shopping_mall
 ``` 
 
-![Results for 2](assets\2.png)
+![Results for 2](assets/2.png)
 
 This suggests a tighter range of spending behavior across customers in most malls, with slight variations in average purchase values.
  
@@ -116,7 +116,7 @@ ORDER BY
     revenue_per_gender DESC
 ``` 
 
- ![Results for 3](assets\3.png)
+ ![Results for 3](assets/3.png)
 
  The data shows that in the top 3 malls (Kanyon, Mall of Istanbul, and Metrocity), female customers consistently generate higher revenue than male customers. 
  
@@ -154,7 +154,7 @@ ORDER BY
     revenue_per_gender
 ```
 
- ![Results for 4](assets\4.png)
+ ![Results for 4](assets/4.png)
  
 This query creates a Common Table Expression (CTE), top_malls, to identify the top 3 malls by total revenue (SUM(quantity * price), rounded). It then joins the CTE with the sales_data and customer_data tables using LEFT JOINs, ensuring all top malls are included even without matching data. The query aggregates revenue by gender, showing how each gender contributes to the top malls’ total revenue. The results are ordered by mall and gender revenue in descending order.
  
@@ -173,7 +173,7 @@ GROUP BY
     payment_method
 ```
 
- ![Results for 5](assets\5.png)
+ ![Results for 5](assets/5.png)
  
 This query aggregates total revenue (SUM(quantity * price)) by shopping mall and payment method. It uses a LEFT JOIN between the sales_data and customer_data tables to ensure that all sales, regardless of customer information, are included. The data is grouped by shopping_mall and payment_method, providing insights into how each payment method contributes to revenue across malls.
 
@@ -203,7 +203,7 @@ ORDER BY
  
 This query calculates the average spending per customer by multiplying quantity * price for each transaction and averaging it across all records. It segments customers into six age groups using a CASE statement and groups the data by these age ranges. The results are ordered by avg_spending in descending order, providing insights into which age group spends the most. This analysis helps understand demographic spending patterns.
 
- ![Results for 6](assets\6.png)
+ ![Results for 6](assets/6.png)
 
 ### 7.	What are the differences among the three bottom shopping malls in terms of categories?
 
@@ -242,7 +242,7 @@ ORDER BY
     rm.rank_asc, 
     rc.revenue_per_cat DESC;
 ```
- ![Results for 7](assets\7.png)
+ ![Results for 7](assets/7.png)
  
 This query first calculates the revenue per category for each shopping mall by summing the total revenue (quantity * price) for each combination of shopping_mall and category, ordered by shopping mall. The ranked_malls CTE then computes the total revenue for each mall and ranks them in ascending order of total revenue, focusing on the top 3 malls. The main query retrieves the categories, their revenue, and associated malls for these top 3, ordered by mall rank and category revenue in descending order.
 
@@ -299,7 +299,7 @@ WHERE
 ORDER BY
     shopping_mall, invoice_date;
 ```
-![Results for 8](assets\8.png)
+![Results for 8](assets/8.png)
 
  This query calculates a running total of sales for each shopping mall over time, with the running_total CTE computing the cumulative sales (SUM(quantity * price)) ordered by invoice date and number for each mall. The previous_running_total CTE then uses the LAG() window function to get the previous value of the running total for comparison. In the main query, it identifies when the running total reaches or exceeds 1,000,000 and labels those instances as "Reached Target". It then filters to only show rows where the running total crosses the 1,000,000 threshold, ensuring that only the first occurrence in each mall is included.
 
